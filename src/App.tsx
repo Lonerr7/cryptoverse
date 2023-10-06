@@ -1,7 +1,7 @@
-import './scss/App.scss';
-import { Routes, Route } from 'react-router-dom';
+import './css/App.css';
 import { Layout, Typography, Space } from 'antd';
 import Navbar from './components/Navbar/Navbar';
+import AppRouter from './components/AppRouter/AppRouter';
 
 function App() {
   return (
@@ -9,7 +9,11 @@ function App() {
       <nav className="navbar">
         <Navbar />
       </nav>
-      <main className="main"></main>
+      <main className="main">
+        <Layout>
+          <AppRouter />
+        </Layout>
+      </main>
       <footer className="footer"></footer>
     </div>
   );
