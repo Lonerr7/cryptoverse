@@ -1,0 +1,25 @@
+@import '../../scss/vars';
+
+.homepage {
+  @extend %page;
+
+  &__title {
+    @extend %page-title;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  &__statTitle {
+    color: $light-grey;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  &__statValue {
+    font-size: 22px;
+  }
+}

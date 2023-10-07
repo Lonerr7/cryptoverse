@@ -8,3 +8,15 @@ $blue-hover: rgb(46, 95, 147);
 $light-white: #e6f7ff;
 $border: #d9d9d9;
 $dark-blue: rgb(0, 19, 41);
+$light-grey: rgb(180, 180, 180);
+
+// === templates ===
+%page {
+  padding: 20px;
+}
+
+%page-title {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
