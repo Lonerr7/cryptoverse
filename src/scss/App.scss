@@ -1,0 +1,22 @@
+.App {
+  display: grid;
+  grid-template-areas:
+    'navbar main'
+    'navbar footer';
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  height: 100%;
+}
+
+.navbar {
+  grid-area: navbar;
+}
+
+.main {
+  grid-area: main;
+  overflow-y: auto;
+}
+
+.footer {
+  grid-area: footer;
+}

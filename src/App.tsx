@@ -1,5 +1,4 @@
-import './css/App.css';
-import { Layout, Typography, Space } from 'antd';
+import './scss/App.scss';
 import Navbar from './components/Navbar/Navbar';
 import AppRouter from './components/AppRouter/AppRouter';
 
@@ -10,11 +9,9 @@ function App() {
         <Navbar />
       </nav>
       <main className="main">
-        <Layout>
-          <AppRouter />
-        </Layout>
+        <AppRouter />
       </main>
-      <footer className="footer"></footer>
+      <footer className="footer">footer</footer>
     </div>
   );
 }

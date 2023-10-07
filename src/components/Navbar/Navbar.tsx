@@ -1,39 +1,68 @@
-import { Button, Menu, Typography, Avatar } from 'antd';
-import { Link } from 'react-router-dom';
-import {
-  HomeOutlined,
-  MoneyCollectOutlined,
-  BulbOutlined,
-  FundOutlined,
-  MenuOutlined,
-} from '@ant-design/icons';
+import s from './Navbar.module.scss';
+import { NavLink } from 'react-router-dom';
 import logo from '../../images/cryptocurrency.png';
 
 const Navbar = () => {
   return (
-    <div className="nav-container">
-      <div className="logo-container">
-        <Avatar src={logo} size="large" />
-        <Typography.Title className="logo" level={2}>
-          <Link to="/">Cryptoverse</Link>
-        </Typography.Title>
-        {/* <Button className="menu-control-container"></Button> */}
+    <div className={s.navbar}>
+      <div className={s.navbar__logoContainer}>
+        <NavLink className={s.navbar__logoLink} to="/">
+          <img className={s.navbar__logo} src={logo} alt="logo" />
+          <h2 className={s.navbar__logoText}>Cryptoverse</h2>
+        </NavLink>
+        {/* <button></button> */}
       </div>
 
-      <Menu theme="dark">
-        <Menu.Item icon={<HomeOutlined />}>
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item icon={<FundOutlined />}>
-          <Link to="/cryptocurrencies">Cryptocurrencies</Link>
-        </Menu.Item>
-        <Menu.Item icon={<MoneyCollectOutlined />}>
-          <Link to="/exchanges">Exchanges</Link>
-        </Menu.Item>
-        <Menu.Item icon={<BulbOutlined />}>
-          <Link to="/news">News</Link>
-        </Menu.Item>
-      </Menu>
+      <ul className={s.navbar__menu}>
+        <li className={s.navbar__menuItem}>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
+                : s.navbar__menuItemLink
+            }
+            to="/"
+          >
+            Home
+          </NavLink>
+        </li>
+        <li className={s.navbar__menuItem}>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
+                : s.navbar__menuItemLink
+            }
+            to="/cryptocurrencies"
+          >
+            Cryptocurrencies
+          </NavLink>
+        </li>
+        <li className={s.navbar__menuItem}>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
+                : s.navbar__menuItemLink
+            }
+            to="/exchanges"
+          >
+            Exchanges
+          </NavLink>
+        </li>
+        <li className={s.navbar__menuItem}>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
+                : s.navbar__menuItemLink
+            }
+            to="/news"
+          >
+            News
+          </NavLink>
+        </li>
+      </ul>
     </div>
   );
 };
