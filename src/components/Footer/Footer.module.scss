@@ -1,0 +1,30 @@
+@import '../../scss/vars';
+
+.footer {
+  grid-area: footer;
+  background-color: $dark-blue;
+  color: $light-white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 18px;
+
+  &__title {
+    margin-bottom: 6px;
+  }
+
+  &__text {
+    margin-bottom: 16px;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  &__link {
+    color: $light-blue;
+  }
+}

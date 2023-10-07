@@ -1,6 +1,7 @@
 import './scss/App.scss';
 import Navbar from './components/Navbar/Navbar';
 import AppRouter from './components/AppRouter/AppRouter';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <main className="main">
         <AppRouter />
       </main>
-      <footer className="footer">footer</footer>
+      <Footer />
     </div>
   );
 }

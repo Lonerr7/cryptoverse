@@ -2,7 +2,10 @@
 
 .navbar {
   height: 100%;
-  background-color: $dark-blue;
+  // width: 307px;
+  // position: fixed;
+  // left: 0;
+  // top: 0;
   padding-top: 15px;
 
   &__logoContainer {
@@ -36,8 +39,30 @@
   }
 
   &__menuItemLink {
+    font-weight: 500;
     padding: 15px 0 10px 10px;
     display: inline-block;
     width: 100%;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+    color: $text-secondary;
+
+    &:hover {
+      color: $light-blue;
+    }
+  }
+
+  &__menuItemLink_active {
+    background-color: $blue;
+    color: $text-secondary;
+
+    &:hover {
+      color: $text-secondary;
+    }
+  }
+
+  &__menuLinkIcon {
+    margin-right: 10px;
   }
 }

@@ -1,6 +1,12 @@
 import s from './Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/cryptocurrency.png';
+import {
+  AiOutlineHome,
+  AiOutlineLineChart,
+  AiFillAccountBook,
+  AiOutlineBulb,
+} from 'react-icons/ai';
 
 const Navbar = () => {
   return (
@@ -23,7 +29,8 @@ const Navbar = () => {
             }
             to="/"
           >
-            Home
+            <AiOutlineHome className={s.navbar__menuLinkIcon} size={20} />
+            <span>Home</span>
           </NavLink>
         </li>
         <li className={s.navbar__menuItem}>
@@ -35,7 +42,8 @@ const Navbar = () => {
             }
             to="/cryptocurrencies"
           >
-            Cryptocurrencies
+            <AiOutlineLineChart className={s.navbar__menuLinkIcon} size={20} />
+            <span>Cryptocurrencies</span>
           </NavLink>
         </li>
         <li className={s.navbar__menuItem}>
@@ -47,7 +55,8 @@ const Navbar = () => {
             }
             to="/exchanges"
           >
-            Exchanges
+            <AiFillAccountBook className={s.navbar__menuLinkIcon} size={20} />
+            <span>Exchanges</span>
           </NavLink>
         </li>
         <li className={s.navbar__menuItem}>
@@ -59,7 +68,8 @@ const Navbar = () => {
             }
             to="/news"
           >
-            News
+            <AiOutlineBulb className={s.navbar__menuLinkIcon} size={20} />
+            <span>News</span>
           </NavLink>
         </li>
       </ul>
