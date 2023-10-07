@@ -1,6 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import coinsSlice from './slices/coinsSlice';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  coins: coinsSlice,
+});
 
 const store = configureStore({
   reducer: rootReducer,
@@ -8,3 +11,12 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export default store;
+
+declare global {
+  interface Window {
+    store: any;
+  }
+}
+window.store = store;
