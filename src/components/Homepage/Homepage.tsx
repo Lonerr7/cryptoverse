@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { getCryptos } from '../../redux/slices/coinsSlice';
+import Preloader from '../common/Preloader/Preloader';
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
   const stats = useAppSelector((state) => state.coins.stats);
   const coins = useAppSelector((state) => state.coins.coins);
   const isFetching = useAppSelector((state) => state.coins.isFetching);
@@ -20,7 +21,9 @@ const Homepage = () => {
   return (
     <div className={s.homepage}>
       <h1 className={s.homepage__title}>Global Crypto Stats</h1>
-      {stats && coins ? (
+      {isFetching ? (
+        <Preloader customPreloaderClassName={s.homepage__preloader} />
+      ) : stats && coins ? (
         <div className={s.homepage__stats}>
           <div className={s.homepage__statItem}>
             <h5 className={s.homepage__statTitle}>Total Cryptocurrencies</h5>
@@ -52,7 +55,7 @@ const Homepage = () => {
           </div>
         </div>
       ) : (
-        <p>loading</p>
+        <p>error</p>
       )}
     </div>
   );

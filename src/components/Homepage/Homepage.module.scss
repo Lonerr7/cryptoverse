@@ -2,9 +2,15 @@
 
 .homepage {
   @extend %page;
+  position: relative;
 
   &__title {
     @extend %page-title;
+  }
+
+  &__preloader {
+    width: 200px !important;
+    height: 200px !important;
   }
 
   &__stats {
