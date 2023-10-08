@@ -3,7 +3,7 @@ import {
   CoinsResponse,
   CoinsState,
 } from '../../types/reduxTypes/coinsSliceTypes';
-import { cryptoApi } from '../../api/api';
+import { cryptoApi } from '../../api/cryptoApi';
 
 export const getCryptos = createAsyncThunk(
   'coins/getCryptos',

@@ -44,7 +44,7 @@ const Homepage: React.FC = () => {
           Show More
         </Link>
       </div>
-      <News />
+      <News simplified />
     </div>
   );
 };
