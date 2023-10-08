@@ -4,7 +4,7 @@ export interface CoinsState {
   isFetching: boolean;
 }
 
-interface Stats {
+export interface Stats {
   total: number;
   totalCoins: number;
   totalMarkets: number;
@@ -13,7 +13,7 @@ interface Stats {
   total24hVolume: string;
 }
 
-interface Coin {
+export interface Coin {
   uuid: string;
   symbol: string;
   name: string;

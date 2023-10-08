@@ -28,4 +28,22 @@
   &__statValue {
     font-size: 22px;
   }
+
+  &__subtitleBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__showMore {
+    font-size: 20px;
+    font-weight: 500;
+    color: $light-blue;
+  }
 }
