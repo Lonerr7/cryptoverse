@@ -2,6 +2,7 @@ export interface CoinsState {
   stats: Stats | null;
   coins: Coin[] | null;
   isFetching: boolean;
+  coinsSearchText: string;
 }
 
 export interface Stats {

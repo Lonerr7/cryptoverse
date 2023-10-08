@@ -22,12 +22,17 @@ const initialState: CoinsState = {
   stats: null,
   coins: null,
   isFetching: false,
+  coinsSearchText: '',
 };
 
 const coinsSlice = createSlice({
   name: 'coins',
   initialState,
-  reducers: {},
+  reducers: {
+    changeSearchText: (state, action: PayloadAction<string>) => {
+      state.coinsSearchText = action.payload;
+    },
+  },
   extraReducers: {
     [getCryptos.pending.type]: (state) => {
       state.isFetching = true;
@@ -47,4 +52,4 @@ const coinsSlice = createSlice({
 });
 
 export default coinsSlice.reducer;
-export const {} = coinsSlice.actions;
+export const { changeSearchText } = coinsSlice.actions;

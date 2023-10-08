@@ -3,7 +3,14 @@
 .cryptocurrencies {
   @extend %page;
   margin-bottom: 60px; // !
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  &__searchInput {
+    width: 60%;
+  }
 }
