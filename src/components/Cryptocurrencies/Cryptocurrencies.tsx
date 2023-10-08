@@ -33,6 +33,10 @@ const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
   ));
 
   useEffect(() => {
+    if (simplified) {
+      return;
+    }
+
     dispatch(getCryptos(cardsCount));
 
     // eslint-disable-next-line
@@ -54,7 +58,7 @@ const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
           customInputClassName={s.cryptocurrencies__searchInput}
           searchText={searchText}
           actionCreator={changeSearchText}
-          placeholder='Search a specific coin...'
+          placeholder="Search a specific coin..."
         />
       ) : null}
       <div className={s.cryptocurrencies__list}>{coinElements}</div>

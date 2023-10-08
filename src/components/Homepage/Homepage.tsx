@@ -19,16 +19,14 @@ const Homepage: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  if (isFetching) {
+    return <Preloader />;
+  }
+
   return (
     <div className={s.homepage}>
       <h1 className={s.homepage__title}>Global Crypto Stats</h1>
-      {isFetching ? (
-        <Preloader customPreloaderClassName={s.homepage__preloader} />
-      ) : stats ? (
-        <CryptoStats stats={stats} />
-      ) : (
-        <p>error</p>
-      )}
+      {stats ? <CryptoStats stats={stats} /> : null}
 
       <div className={s.homepage__subtitleBox}>
         <h2 className={s.homepage__subtitle}>
