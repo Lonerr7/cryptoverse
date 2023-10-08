@@ -14,7 +14,7 @@ const Homepage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getCryptos());
+    dispatch(getCryptos(10));
 
     // eslint-disable-next-line
   }, []);
@@ -38,7 +38,7 @@ const Homepage: React.FC = () => {
           Show More
         </Link>
       </div>
-      <Cryptocurrencies />
+      <Cryptocurrencies simplified />
 
       <div className={s.homepage__subtitleBox}>
         <h2 className={s.homepage__subtitle}>Latest Crypto News</h2>

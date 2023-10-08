@@ -9,5 +9,6 @@ const axiosInstance = axios.create({
 });
 
 export const cryptoApi = {
-  fetchCryptos: async () => await axiosInstance.get('/coins'),
+  fetchCryptos: async (limit = 50) =>
+    await axiosInstance.get(`/coins?limit=${limit}`),
 };

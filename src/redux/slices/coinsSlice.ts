@@ -7,9 +7,9 @@ import { cryptoApi } from '../../api/api';
 
 export const getCryptos = createAsyncThunk(
   'coins/getCryptos',
-  async (_, { rejectWithValue }) => {
+  async (limit: number, { rejectWithValue }) => {
     try {
-      const response = await cryptoApi.fetchCryptos();
+      const response = await cryptoApi.fetchCryptos(limit);
 
       return response.data.data;
     } catch (error: any) {

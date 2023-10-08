@@ -4,9 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { getCryptos } from '../../redux/slices/coinsSlice';
 import CoinCard from './CoinCard/CoinCard';
 
-const Cryptocurrencies: React.FC = () => {
+interface Props {
+  simplified?: boolean;
+}
+
+const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
   const coins = useAppSelector((state) => state.coins.coins);
   const dispatch = useAppDispatch();
+  const cardsCount = simplified ? 10 : 100;
 
   const coinElements = coins?.map((coin, i) => (
     <CoinCard
@@ -22,12 +27,19 @@ const Cryptocurrencies: React.FC = () => {
   ));
 
   useEffect(() => {
-    dispatch(getCryptos());
+    dispatch(getCryptos(cardsCount));
 
     // eslint-disable-next-line
   }, []);
 
-  return <div className={s.cryptocurrencies}>{coinElements}</div>;
+  return (
+    <div
+      className={s.cryptocurrencies}
+      style={simplified ? { padding: 0 } : {}}
+    >
+      {coinElements}
+    </div>
+  );
 };
 
 export default Cryptocurrencies;
