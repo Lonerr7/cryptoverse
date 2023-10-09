@@ -54,11 +54,15 @@ const News: React.FC<Props> = ({
           options={selectOptions}
           onChange={onSelectChange}
           defaultInputValue={'Cryptocurrency'}
-          classNamePrefix='news-select'
+          classNamePrefix="news-select"
         />
       ) : null}
       <div className={s.news__inner}>
-        {isNewsFetching ? <Preloader /> : newsCards}
+        {isNewsFetching ? (
+          <Preloader customPreloaderClassName={s.news__preloader} />
+        ) : (
+          newsCards
+        )}
       </div>
     </div>
   );

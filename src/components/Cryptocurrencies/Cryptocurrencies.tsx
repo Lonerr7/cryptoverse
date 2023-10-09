@@ -8,6 +8,7 @@ import {
   selectCryptosBySearch,
 } from '../../redux/selectors/selectCryprosBySearch';
 import Search from '../common/Search/Search';
+import Preloader from '../common/Preloader/Preloader';
 
 interface Props {
   simplified?: boolean;
@@ -15,6 +16,7 @@ interface Props {
 
 const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
   const coins = useAppSelector(selectCryptosBySearch);
+  const isCoinsFetching = useAppSelector((state) => state.coins.isFetching);
   const searchText = useAppSelector(selectCryptoSearchText);
   const dispatch = useAppDispatch();
   const cardsCount = simplified ? 10 : 100;
@@ -49,19 +51,26 @@ const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
         simplified
           ? {
               padding: 0,
+              marginBottom: 40,
             }
           : {}
       }
     >
-      {!simplified ? (
-        <Search
-          customInputClassName={s.cryptocurrencies__searchInput}
-          searchText={searchText}
-          actionCreator={changeSearchText}
-          placeholder="Search a specific coin..."
-        />
-      ) : null}
-      <div className={s.cryptocurrencies__list}>{coinElements}</div>
+      {isCoinsFetching ? (
+        <Preloader />
+      ) : (
+        <>
+          {!simplified ? (
+            <Search
+              customInputClassName={s.cryptocurrencies__searchInput}
+              searchText={searchText}
+              actionCreator={changeSearchText}
+              placeholder="Search a specific coin..."
+            />
+          ) : null}
+          <div className={s.cryptocurrencies__list}>{coinElements}</div>
+        </>
+      )}
     </div>
   );
 };

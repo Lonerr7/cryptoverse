@@ -19,32 +19,34 @@ const Homepage: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (isFetching) {
-    return <Preloader />;
-  }
-
   return (
     <div className={s.homepage}>
       <h1 className={s.homepage__title}>Global Crypto Stats</h1>
-      {stats ? <CryptoStats stats={stats} /> : null}
+      {isFetching ? (
+        <Preloader />
+      ) : (
+        <>
+          {stats ? <CryptoStats stats={stats} /> : null}
 
-      <div className={s.homepage__subtitleBox}>
-        <h2 className={s.homepage__subtitle}>
-          Top 10 Cryptocurrencies in the world
-        </h2>
-        <Link to="/cryptocurrencies" className={s.homepage__showMore}>
-          Show More
-        </Link>
-      </div>
-      <Cryptocurrencies simplified />
+          <div className={s.homepage__subtitleBox}>
+            <h2 className={s.homepage__subtitle}>
+              Top 10 Cryptocurrencies in the world
+            </h2>
+            <Link to="/cryptocurrencies" className={s.homepage__showMore}>
+              Show More
+            </Link>
+          </div>
+          <Cryptocurrencies simplified />
 
-      <div className={s.homepage__subtitleBox}>
-        <h2 className={s.homepage__subtitle}>Latest Crypto News</h2>
-        <Link to="/news" className={s.homepage__showMore}>
-          Show More
-        </Link>
-      </div>
-      <NewsContainer simplified />
+          <div className={s.homepage__subtitleBox}>
+            <h2 className={s.homepage__subtitle}>Latest Crypto News</h2>
+            <Link to="/news" className={s.homepage__showMore}>
+              Show More
+            </Link>
+          </div>
+          <NewsContainer simplified />
+        </>
+      )}
     </div>
   );
 };
