@@ -6,7 +6,7 @@ import { getCryptos } from '../../redux/slices/coinsSlice';
 import Preloader from '../common/Preloader/Preloader';
 import CryptoStats from './CryptoStats/CryptoStats';
 import Cryptocurrencies from '../Cryptocurrencies/Cryptocurrencies';
-import News from '../News/News';
+import NewsContainer from '../News/NewsContainer';
 
 const Homepage: React.FC = () => {
   const stats = useAppSelector((state) => state.coins.stats);
@@ -44,7 +44,7 @@ const Homepage: React.FC = () => {
           Show More
         </Link>
       </div>
-      <News simplified />
+      <NewsContainer simplified />
     </div>
   );
 };
