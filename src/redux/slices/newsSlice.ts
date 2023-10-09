@@ -12,8 +12,6 @@ export const fetchCryptoNews = createAsyncThunk(
     try {
       const response = await newsApi.getCryptoNews(newsCategory, count);
 
-      console.log(response);
-
       return response.data.value
     } catch (error: any) {
       return rejectWithValue(error.message);
@@ -45,4 +43,3 @@ const newsSlice = createSlice({
 });
 
 export default newsSlice.reducer;
-export const {} = newsSlice.actions;

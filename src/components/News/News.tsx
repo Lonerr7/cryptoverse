@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { fetchCryptoNews } from '../../redux/slices/newsSlice';
 import s from './News.module.scss';
 import Preloader from '../common/Preloader/Preloader';
 import NewsCard from './NewsCard/NewsCard';
-import Select, { SingleValue } from 'react-select';
-import { getCryptos } from '../../redux/slices/coinsSlice';
+import Select from 'react-select';
 import { NewsItem } from '../../types/reduxTypes/newsSliceTypes';
 
 interface Props {
@@ -58,6 +54,7 @@ const News: React.FC<Props> = ({
           options={selectOptions}
           onChange={onSelectChange}
           defaultInputValue={'Cryptocurrency'}
+          classNamePrefix='news-select'
         />
       ) : null}
       <div className={s.news__inner}>

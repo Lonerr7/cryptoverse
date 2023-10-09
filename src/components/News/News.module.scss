@@ -2,9 +2,13 @@
 
 .news {
   @extend %page;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__select {
     margin-bottom: 20px;
+    width: 600px !important; // !
   }
 
   &__inner {
