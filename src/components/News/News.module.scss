@@ -1,5 +1,15 @@
+@import '../../scss/vars';
+
 .news {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  @extend %page;
+
+  &__select {
+    margin-bottom: 20px;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
 }
