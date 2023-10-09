@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   FetchNewsThunk,
+  NewsItem,
   NewsSliceState,
 } from '../../types/reduxTypes/newsSliceTypes';
 import { newsApi } from '../../api/newsApi';
@@ -12,6 +13,8 @@ export const fetchCryptoNews = createAsyncThunk(
       const response = await newsApi.getCryptoNews(newsCategory, count);
 
       console.log(response);
+
+      return response.data.value
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -20,13 +23,25 @@ export const fetchCryptoNews = createAsyncThunk(
 
 const initialState: NewsSliceState = {
   news: [],
+  isFetching: false,
 };
 
 const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    [fetchCryptoNews.pending.type]: (state) => {
+      state.isFetching = true;
+    },
+    [fetchCryptoNews.fulfilled.type]: (
+      state,
+      action: PayloadAction<NewsItem[]>
+    ) => {
+      state.isFetching = false;
+      state.news = action.payload;
+    },
+  },
 });
 
 export default newsSlice.reducer;

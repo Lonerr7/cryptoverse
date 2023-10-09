@@ -5,6 +5,7 @@ export interface FetchNewsThunk {
 
 export interface NewsSliceState {
   news: NewsItem[];
+  isFetching: boolean;
 }
 
 export interface NewsItem {
