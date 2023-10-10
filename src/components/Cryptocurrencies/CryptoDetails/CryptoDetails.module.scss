@@ -2,4 +2,45 @@
 
 .details {
   @extend %page;
+
+  &__title,
+  &__statsTitle,
+  &__subtitle,
+  &__statsSubtitle {
+    text-align: center;
+  }
+
+  &__title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 700;
+    color: $light-blue;
+  }
+
+  &__subtitle {
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: $dark-grey;
+  }
+
+  &__select {
+    margin-bottom: 30px;
+  }
+
+  &__statsTitle {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__statsSubtitle {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  &__statsTable {
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
