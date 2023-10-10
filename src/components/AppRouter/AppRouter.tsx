@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Homepage from '../Homepage/Homepage';
 import Exchanges from '../Exchanges/Exchanges';
 import Cryptocurrencies from '../Cryptocurrencies/Cryptocurrencies';
-import CryptoDetails from '../CryptoDetails/CryptoDetails';
+import CryptoDetails from '../Cryptocurrencies/CryptoDetails/CryptoDetails';
 import NewsContainer from '../News/NewsContainer';
 
 const AppRouter = () => {

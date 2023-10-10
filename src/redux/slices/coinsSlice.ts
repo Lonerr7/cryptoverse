@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
+  CoinDetails,
   CoinsResponse,
   CoinsState,
 } from '../../types/reduxTypes/coinsSliceTypes';
@@ -18,10 +19,25 @@ export const getCryptos = createAsyncThunk(
   }
 );
 
+export const fetchCoinDetails = createAsyncThunk(
+  'coins/fetchCoinDetails',
+  async ({ coinId }: { coinId: string }, { rejectWithValue }) => {
+    try {
+      const response = await cryptoApi.getCoinDetails(coinId);
+
+      return response.data.data.coin;
+    } catch (error: any) {
+      return rejectWithValue(error?.message); //!
+    }
+  }
+);
+
 const initialState: CoinsState = {
   stats: null,
   coins: null,
+  currentCoinDetails: null,
   isFetching: false,
+  isCoinDetailsFetching: false,
   coinsSearchText: '',
 };
 
@@ -46,7 +62,23 @@ const coinsSlice = createSlice({
       state.stats = action.payload.stats;
     },
     [getCryptos.rejected.type]: (state) => {
-      state.isFetching = false;
+      state.isFetching = false; //!
+    },
+    [fetchCoinDetails.pending.type]: (state) => {
+      state.isCoinDetailsFetching = true;
+    },
+    [fetchCoinDetails.fulfilled.type]: (
+      state,
+      action: PayloadAction<CoinDetails>
+    ) => {
+      state.isCoinDetailsFetching = false;
+      state.currentCoinDetails = action.payload;
+    },
+    [fetchCoinDetails.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.isCoinDetailsFetching = false; //!
     },
   },
 });

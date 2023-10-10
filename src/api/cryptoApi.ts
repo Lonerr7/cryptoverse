@@ -11,4 +11,6 @@ const axiosInstance = axios.create({
 export const cryptoApi = {
   fetchCryptos: async (limit = 50) =>
     await axiosInstance.get(`/coins?limit=${limit}`),
+  getCoinDetails: async (coinId: string) =>
+    await axiosInstance.get(`/coin/${coinId}`),
 };
