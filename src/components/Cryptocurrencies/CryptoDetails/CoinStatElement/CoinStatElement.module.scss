@@ -1,12 +1,11 @@
 @import '../../../../scss/vars';
 
 .stat {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid $border;
+  @extend %coin-row;
+
+  &:hover {
+    background-color: $bgPrimary;
+  }
 
   &__titleBox {
     margin-right: 10px;

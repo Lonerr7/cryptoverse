@@ -4,7 +4,9 @@
   @extend %page;
 
   &__title,
-  &__subtitle {
+  &__subtitle,
+  &__coinDescription,
+  &__linksTitle {
     text-align: center;
   }
 
@@ -27,10 +29,24 @@
   }
 
   &__statsBlock {
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     max-width: 1000px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__coinDescription {
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 500;
+    color: $dark-grey;
+    margin-bottom: 30px;
+  }
+
+  &__linksTitle {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 15px;
   }
 }

@@ -1,0 +1,28 @@
+@import '../../../../scss/vars';
+
+.link {
+  @extend %coin-row;
+
+  &:hover {
+    background-color: $bgPrimary;
+  }
+
+  &__type,
+  &__url {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &__type {
+    margin-right: 10px;
+  }
+
+  &__url {
+    color: $blue;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $blue-hover;
+    }
+  }
+}

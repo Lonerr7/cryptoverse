@@ -1,4 +1,4 @@
-import { CoinStat, GenericStat } from '../CryptoDetailsContainer';
+import { GenericStat } from '../CryptoDetailsContainer';
 import s from './CoinStatElement.module.scss';
 
 interface Props extends GenericStat {}

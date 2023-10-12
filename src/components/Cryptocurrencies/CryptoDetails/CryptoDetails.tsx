@@ -5,6 +5,7 @@ import { CoinDetails } from '../../../types/reduxTypes/coinsSliceTypes';
 import { CoinStat, GenericStat } from './CryptoDetailsContainer';
 import CoinStatElement from './CoinStatElement/CoinStatElement';
 import CryptoStats from './CryptoStats/CryptoStats';
+import CoinLink from './CoinLink/CoinLink';
 
 interface Props {
   coinDetails: CoinDetails | null;
@@ -42,6 +43,15 @@ const CryptoDetails: React.FC<Props> = ({
     />
   ));
 
+  const coinLinksElements = coinDetails?.links.map((link) => (
+    <CoinLink
+      key={link.name}
+      name={link.name}
+      type={link.type}
+      url={link.url}
+    />
+  ));
+
   return (
     <div className={s.details}>
       {isFetching ? (
@@ -76,6 +86,17 @@ const CryptoDetails: React.FC<Props> = ({
                   elements={genericStatsElements}
                   subtitle="An overview showing the stats of all cryptocurrencies"
                 />
+              </div>
+
+              <p className={s.details__coinDescription}>
+                {coinDetails.description}
+              </p>
+
+              <div className={s.details__links}>
+                <h5 className={s.details__linksTitle}>
+                  {coinDetails.name} Links
+                </h5>
+                {coinLinksElements}
               </div>
             </>
           ) : null}
