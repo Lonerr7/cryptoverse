@@ -8,6 +8,11 @@ import {
   AiOutlineDollar,
   AiOutlineThunderbolt,
   AiOutlineTrophy,
+  AiOutlineLineChart,
+  AiOutlineCheck,
+  AiOutlineStop,
+  AiOutlineMoneyCollect,
+  AiOutlineExclamationCircle,
 } from 'react-icons/ai';
 import { MdOutlineGrid3X3 } from 'react-icons/md';
 
@@ -15,6 +20,10 @@ export interface CoinStat {
   title: string;
   value: string | number;
   icon: React.ReactElement;
+}
+
+export interface GenericStat extends Omit<CoinStat, 'value'> {
+  value: string | number | React.ReactElement;
 }
 
 const CryptoDetailsContainer: React.FC = () => {
@@ -33,6 +42,7 @@ const CryptoDetailsContainer: React.FC = () => {
   }));
 
   let stats: Array<CoinStat> = [];
+  let genericStats: Array<GenericStat> = [];
 
   if (coinDetails) {
     stats = [
@@ -41,7 +51,11 @@ const CryptoDetailsContainer: React.FC = () => {
         value: `$ ${coinDetails?.price && millify(+coinDetails?.price)}`,
         icon: <AiOutlineDollar size={20} />,
       },
-      { title: 'Rank', value: coinDetails?.rank, icon: <MdOutlineGrid3X3 /> },
+      {
+        title: 'Rank',
+        value: coinDetails?.rank,
+        icon: <MdOutlineGrid3X3 size={20} />,
+      },
       {
         title: '24h Volume',
         value: `$ ${
@@ -60,6 +74,38 @@ const CryptoDetailsContainer: React.FC = () => {
         icon: <AiOutlineTrophy size={20} />,
       },
     ];
+
+    genericStats = [
+      {
+        title: 'Number Of Markets',
+        value: coinDetails.numberOfMarkets,
+        icon: <AiOutlineLineChart size={20} />,
+      },
+      {
+        title: 'Number Of Exchanges',
+        value: coinDetails.numberOfExchanges,
+        icon: <AiOutlineMoneyCollect size={20} />,
+      },
+      {
+        title: 'Aprroved Supply',
+        value: coinDetails.supply.confirmed ? (
+          <AiOutlineCheck size={20} />
+        ) : (
+          <AiOutlineStop size={20} />
+        ),
+        icon: <AiOutlineExclamationCircle size={20} />,
+      },
+      {
+        title: 'Total Supply',
+        value: `$ ${millify(+coinDetails.supply.total)}`,
+        icon: <AiOutlineExclamationCircle size={20} />,
+      },
+      {
+        title: 'Circulating Supply',
+        value: `$ ${millify(+coinDetails.supply.circulating)}`,
+        icon: <AiOutlineExclamationCircle size={20} />,
+      },
+    ];
   }
 
   useEffect(() => {
@@ -75,6 +121,7 @@ const CryptoDetailsContainer: React.FC = () => {
       isFetching={isFetching}
       selectOptions={selectOptions}
       stats={stats}
+      genericStats={genericStats}
     />
   );
 };

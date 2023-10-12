@@ -4,9 +4,7 @@
   @extend %page;
 
   &__title,
-  &__statsTitle,
-  &__subtitle,
-  &__statsSubtitle {
+  &__subtitle {
     text-align: center;
   }
 
@@ -28,19 +26,11 @@
     margin-bottom: 30px;
   }
 
-  &__statsTitle {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-
-  &__statsSubtitle {
-    font-size: 20px;
-    margin-bottom: 25px;
-  }
-
-  &__statsTable {
-    max-width: 600px;
+  &__statsBlock {
     margin: 0 auto;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

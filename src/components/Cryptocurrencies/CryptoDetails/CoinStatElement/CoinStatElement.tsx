@@ -1,7 +1,7 @@
-import { CoinStat } from '../CryptoDetailsContainer';
+import { CoinStat, GenericStat } from '../CryptoDetailsContainer';
 import s from './CoinStatElement.module.scss';
 
-interface Props extends CoinStat {}
+interface Props extends GenericStat {}
 
 const CoinStatElement: React.FC<Props> = ({ icon, title, value }) => {
   return (

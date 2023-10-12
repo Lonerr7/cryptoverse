@@ -2,8 +2,9 @@ import s from './CryptoDetails.module.scss';
 import Select from 'react-select';
 import Preloader from '../../common/Preloader/Preloader';
 import { CoinDetails } from '../../../types/reduxTypes/coinsSliceTypes';
-import { CoinStat } from './CryptoDetailsContainer';
+import { CoinStat, GenericStat } from './CryptoDetailsContainer';
 import CoinStatElement from './CoinStatElement/CoinStatElement';
+import CryptoStats from './CryptoStats/CryptoStats';
 
 interface Props {
   coinDetails: CoinDetails | null;
@@ -13,6 +14,7 @@ interface Props {
     value: string;
   }>;
   stats: CoinStat[];
+  genericStats: GenericStat[];
 }
 
 const CryptoDetails: React.FC<Props> = ({
@@ -20,13 +22,23 @@ const CryptoDetails: React.FC<Props> = ({
   isFetching,
   selectOptions,
   stats,
+  genericStats,
 }) => {
-  const coinStats = stats.map((stat, i) => (
+  const coinStatsElements = stats.map((stat, i) => (
     <CoinStatElement
       key={i}
       icon={stat.icon}
       title={stat.title}
       value={stat.value}
+    />
+  ));
+
+  const genericStatsElements = genericStats.map((stat, i) => (
+    <CoinStatElement
+      key={i}
+      title={stat.title}
+      value={stat.value}
+      icon={stat.icon}
     />
   ));
 
@@ -53,15 +65,17 @@ const CryptoDetails: React.FC<Props> = ({
                 placeholder="Select Time period..."
               />
 
-              <div className={s.details__stats}>
-                <h3 className={s.details__statsTitle}>
-                  {coinDetails.name} Value Statistics
-                </h3>
-                <p className={s.details__statsSubtitle}>
-                  An overview showing stats of {coinDetails.name}
-                </p>
-
-                <div className={s.details__statsTable}>{coinStats}</div>
+              <div className={s.details__statsBlock}>
+                <CryptoStats
+                  coinDetails={coinDetails}
+                  elements={coinStatsElements}
+                  subtitle={`An overview showing stats of ${coinDetails.name}`}
+                />
+                <CryptoStats
+                  coinDetails={coinDetails}
+                  elements={genericStatsElements}
+                  subtitle="An overview showing the stats of all cryptocurrencies"
+                />
               </div>
             </>
           ) : null}

@@ -1,0 +1,25 @@
+.stats {
+  margin-right: 20px;
+  max-width: 400px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &__title,
+  &__subtitle {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    margin-bottom: 25px;
+    line-height: 27px;
+  }
+}
