@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import CryptoDetails from './CryptoDetails';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
-import { fetchCoinDetails } from '../../../redux/slices/coinsSlice';
+import {
+  fetchCoinDetails,
+  fetchCoinHistory,
+} from '../../../redux/slices/coinsSlice';
 import millify from 'millify';
 import {
   AiOutlineDollar,
@@ -29,6 +32,7 @@ export interface GenericStat extends Omit<CoinStat, 'value'> {
 const CryptoDetailsContainer: React.FC = () => {
   const { coinId } = useParams();
   const coinDetails = useAppSelector((state) => state.coins.currentCoinDetails);
+  const coinHistory = useAppSelector((state) => state.coins.currentCoinHistory);
   const isFetching = useAppSelector(
     (state) => state.coins.isCoinDetailsFetching
   );
@@ -111,6 +115,7 @@ const CryptoDetailsContainer: React.FC = () => {
   useEffect(() => {
     if (coinId) {
       dispatch(fetchCoinDetails({ coinId }));
+      dispatch(fetchCoinHistory({ coinId }));
     }
 
     // eslint-disable-next-line
@@ -118,6 +123,7 @@ const CryptoDetailsContainer: React.FC = () => {
   return (
     <CryptoDetails
       coinDetails={coinDetails}
+      coinHistory={coinHistory}
       isFetching={isFetching}
       selectOptions={selectOptions}
       stats={stats}

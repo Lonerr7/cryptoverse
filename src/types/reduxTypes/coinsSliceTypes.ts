@@ -1,7 +1,8 @@
 export interface CoinsState {
   stats: Stats | null;
-  coins: Coin[] | null;
+  coins: Coin[];
   currentCoinDetails: CoinDetails | null;
+  currentCoinHistory: CoinHistoryData;
   isFetching: boolean;
   isCoinDetailsFetching: boolean;
   coinsSearchText: string;
@@ -89,4 +90,19 @@ interface CoinDetailsLink {
 interface CoinDetailsNotice {
   type: string;
   value: string;
+}
+
+export interface CoinHistoryData {
+  change: string;
+  history: CoinHistory[];
+}
+
+export interface CoinHistory {
+  price: string;
+  timestamp: number;
+}
+
+export interface FetchCoinHistoryParams {
+  coinId: string;
+  timePeriod?: '3h' | '24h' | '7d' | '30d' | '3m' | '1y' | '3y' | '5y';
 }

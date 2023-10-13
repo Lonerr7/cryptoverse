@@ -3,6 +3,7 @@ import {
   CoinDetails,
   CoinsResponse,
   CoinsState,
+  FetchCoinHistoryParams,
 } from '../../types/reduxTypes/coinsSliceTypes';
 import { cryptoApi } from '../../api/cryptoApi';
 
@@ -21,9 +22,12 @@ export const getCryptos = createAsyncThunk(
 
 export const fetchCoinDetails = createAsyncThunk(
   'coins/fetchCoinDetails',
-  async ({ coinId }: { coinId: string }, { rejectWithValue }) => {
+  async ({ coinId }: { coinId: string }, { rejectWithValue, dispatch }) => {
     try {
       const response = await cryptoApi.getCoinDetails(coinId);
+
+      console.log(`coinDetails`, response);
+      
 
       return response.data.data.coin;
     } catch (error: any) {
@@ -32,10 +36,25 @@ export const fetchCoinDetails = createAsyncThunk(
   }
 );
 
+export const fetchCoinHistory = createAsyncThunk(
+  'coins/fetchCoinHistory',
+  async ({ coinId, timePeriod = '24h' }: FetchCoinHistoryParams) => {
+    try {
+      const response = await cryptoApi.getCoinHistory({ coinId, timePeriod });
+
+      console.log(`coinHistory`, response);
+    } catch (error: any) {}
+  }
+);
+
 const initialState: CoinsState = {
   stats: null,
-  coins: null,
+  coins: [],
   currentCoinDetails: null,
+  currentCoinHistory: {
+    change: '',
+    history: [],
+  },
   isFetching: false,
   isCoinDetailsFetching: false,
   coinsSearchText: '',

@@ -1,11 +1,18 @@
 import s from './CryptoDetails.module.scss';
 import Select from 'react-select';
 import Preloader from '../../common/Preloader/Preloader';
-import { CoinDetails } from '../../../types/reduxTypes/coinsSliceTypes';
+import {
+  CoinDetails,
+  CoinHistoryData,
+} from '../../../types/reduxTypes/coinsSliceTypes';
 import { CoinStat, GenericStat } from './CryptoDetailsContainer';
 import CoinStatElement from './CoinStatElement/CoinStatElement';
 import CryptoStats from './CryptoStats/CryptoStats';
 import CoinLink from './CoinLink/CoinLink';
+import LineChart from '../../common/LineChart/LineChart';
+import millify from 'millify';
+
+// Закончил на 1:50:16
 
 interface Props {
   coinDetails: CoinDetails | null;
@@ -16,6 +23,7 @@ interface Props {
   }>;
   stats: CoinStat[];
   genericStats: GenericStat[];
+  coinHistory: CoinHistoryData;
 }
 
 const CryptoDetails: React.FC<Props> = ({
@@ -24,6 +32,7 @@ const CryptoDetails: React.FC<Props> = ({
   selectOptions,
   stats,
   genericStats,
+  coinHistory,
 }) => {
   const coinStatsElements = stats.map((stat, i) => (
     <CoinStatElement
@@ -68,12 +77,19 @@ const CryptoDetails: React.FC<Props> = ({
                 statistics, market cap and supply
               </p>
 
-              <Select
-                className={s.details__select}
-                options={selectOptions}
-                defaultInputValue="7d"
-                placeholder="Select Time period..."
-              />
+              <div className={s.details__charBlock}>
+                <Select
+                  className={s.details__select}
+                  options={selectOptions}
+                  defaultInputValue="7d"
+                  placeholder="Select Time period..."
+                />
+                <LineChart
+                  coinHistory={coinHistory}
+                  coinName={coinDetails.name}
+                  currentPrice={millify(+coinDetails.price)}
+                />
+              </div>
 
               <div className={s.details__statsBlock}>
                 <CryptoStats
