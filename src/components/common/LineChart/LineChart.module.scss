@@ -1,0 +1,27 @@
+.chart {
+  &__title,
+  &__priceTitle {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  &__priceTitle {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 27px;
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__chart {
+    width: 100%;
+  }
+}

@@ -82,7 +82,7 @@ const CryptoDetails: React.FC<Props> = ({
                 statistics, market cap and supply
               </p>
 
-              <div className={s.details__charBlock}>
+              <div className={s.details__chartBlock}>
                 <Select
                   className={s.details__select}
                   options={selectOptions}
