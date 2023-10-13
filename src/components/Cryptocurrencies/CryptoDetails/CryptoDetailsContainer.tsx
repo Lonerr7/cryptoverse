@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CryptoDetails from './CryptoDetails';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
@@ -18,6 +18,7 @@ import {
   AiOutlineExclamationCircle,
 } from 'react-icons/ai';
 import { MdOutlineGrid3X3 } from 'react-icons/md';
+import { CoinChartTimePeriod } from '../../../types/reduxTypes/coinsSliceTypes';
 
 export interface CoinStat {
   title: string;
@@ -36,6 +37,8 @@ const CryptoDetailsContainer: React.FC = () => {
   const isFetching = useAppSelector(
     (state) => state.coins.isCoinDetailsFetching
   );
+  const [selectedTimestamp, setSelectedTimestamp] =
+    useState<CoinChartTimePeriod>('24h');
   const dispatch = useAppDispatch();
 
   const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
@@ -112,14 +115,26 @@ const CryptoDetailsContainer: React.FC = () => {
     ];
   }
 
+  const onSelectChange = (newValue: any) => {
+    setSelectedTimestamp(newValue.value);
+  };
+
   useEffect(() => {
     if (coinId) {
       dispatch(fetchCoinDetails({ coinId }));
-      dispatch(fetchCoinHistory({ coinId }));
     }
 
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (coinId) {
+      dispatch(fetchCoinHistory({ coinId, timePeriod: selectedTimestamp }));
+    }
+
+    // eslint-disable-next-line
+  }, [selectedTimestamp]);
+
   return (
     <CryptoDetails
       coinDetails={coinDetails}
@@ -128,6 +143,8 @@ const CryptoDetailsContainer: React.FC = () => {
       selectOptions={selectOptions}
       stats={stats}
       genericStats={genericStats}
+      selectDefaultValue={selectedTimestamp}
+      onSelectChange={onSelectChange}
     />
   );
 };

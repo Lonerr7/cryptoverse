@@ -2,6 +2,7 @@ import s from './CryptoDetails.module.scss';
 import Select from 'react-select';
 import Preloader from '../../common/Preloader/Preloader';
 import {
+  CoinChartTimePeriod,
   CoinDetails,
   CoinHistoryData,
 } from '../../../types/reduxTypes/coinsSliceTypes';
@@ -24,6 +25,8 @@ interface Props {
   stats: CoinStat[];
   genericStats: GenericStat[];
   coinHistory: CoinHistoryData;
+  selectDefaultValue: CoinChartTimePeriod;
+  onSelectChange: (newValue: any) => void;
 }
 
 const CryptoDetails: React.FC<Props> = ({
@@ -33,6 +36,8 @@ const CryptoDetails: React.FC<Props> = ({
   stats,
   genericStats,
   coinHistory,
+  selectDefaultValue,
+  onSelectChange,
 }) => {
   const coinStatsElements = stats.map((stat, i) => (
     <CoinStatElement
@@ -81,8 +86,9 @@ const CryptoDetails: React.FC<Props> = ({
                 <Select
                   className={s.details__select}
                   options={selectOptions}
-                  defaultInputValue="7d"
+                  defaultInputValue={selectDefaultValue}
                   placeholder="Select Time period..."
+                  onChange={onSelectChange}
                 />
                 <LineChart
                   coinHistory={coinHistory}

@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   CoinDetails,
+  CoinHistoryData,
   CoinsResponse,
   CoinsState,
   FetchCoinHistoryParams,
@@ -22,12 +23,9 @@ export const getCryptos = createAsyncThunk(
 
 export const fetchCoinDetails = createAsyncThunk(
   'coins/fetchCoinDetails',
-  async ({ coinId }: { coinId: string }, { rejectWithValue, dispatch }) => {
+  async ({ coinId }: { coinId: string }, { rejectWithValue }) => {
     try {
       const response = await cryptoApi.getCoinDetails(coinId);
-
-      console.log(`coinDetails`, response);
-      
 
       return response.data.data.coin;
     } catch (error: any) {
@@ -42,7 +40,9 @@ export const fetchCoinHistory = createAsyncThunk(
     try {
       const response = await cryptoApi.getCoinHistory({ coinId, timePeriod });
 
-      console.log(`coinHistory`, response);
+      console.log(response.data.data);
+
+      return response.data.data;
     } catch (error: any) {}
   }
 );
@@ -98,6 +98,12 @@ const coinsSlice = createSlice({
       action: PayloadAction<string>
     ) => {
       state.isCoinDetailsFetching = false; //!
+    },
+    [fetchCoinHistory.fulfilled.type]: (
+      state,
+      action: PayloadAction<CoinHistoryData>
+    ) => {
+      state.currentCoinHistory = action.payload;
     },
   },
 });

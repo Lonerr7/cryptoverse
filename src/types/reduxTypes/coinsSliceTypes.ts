@@ -104,5 +104,15 @@ export interface CoinHistory {
 
 export interface FetchCoinHistoryParams {
   coinId: string;
-  timePeriod?: '3h' | '24h' | '7d' | '30d' | '3m' | '1y' | '3y' | '5y';
+  timePeriod?: CoinChartTimePeriod;
 }
+
+export type CoinChartTimePeriod =
+  | '3h'
+  | '24h'
+  | '7d'
+  | '30d'
+  | '3m'
+  | '1y'
+  | '3y'
+  | '5y';
