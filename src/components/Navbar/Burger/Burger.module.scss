@@ -1,0 +1,23 @@
+@import '../../../scss/vars';
+
+.burger {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  display: none;
+  z-index: 501;
+
+  &__icon {
+    color: $blue;
+  }
+
+  &__icon_cross {
+    margin-top: 2px;
+  }
+}
+
+@media (max-width: 880px) {
+  .burger {
+    display: block;
+  }
+}

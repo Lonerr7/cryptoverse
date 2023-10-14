@@ -1,14 +1,17 @@
 import s from './Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/cryptocurrency.png';
-import {
-  AiOutlineHome,
-  AiOutlineLineChart,
-  AiFillAccountBook,
-  AiOutlineBulb,
-} from 'react-icons/ai';
+import Navigation from './Navigation/Navigation';
+import Burger from './Burger/Burger';
+import { useState } from 'react';
 
 const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const openCloseMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className={s.navbar}>
       <div className={s.navbar__logoContainer}>
@@ -16,63 +19,10 @@ const Navbar: React.FC = () => {
           <img className={s.navbar__logo} src={logo} alt="logo" />
           <h2 className={s.navbar__logoText}>Cryptoverse</h2>
         </NavLink>
-        {/* <button></button> */}
+        <Burger isMenuOpen={isMenuOpen} openCloseMenu={openCloseMenu} />
       </div>
 
-      <ul className={s.navbar__menu}>
-        <li className={s.navbar__menuItem}>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
-                : s.navbar__menuItemLink
-            }
-            to="/"
-          >
-            <AiOutlineHome className={s.navbar__menuLinkIcon} size={20} />
-            <span>Home</span>
-          </NavLink>
-        </li>
-        <li className={s.navbar__menuItem}>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
-                : s.navbar__menuItemLink
-            }
-            to="/cryptocurrencies"
-          >
-            <AiOutlineLineChart className={s.navbar__menuLinkIcon} size={20} />
-            <span>Cryptocurrencies</span>
-          </NavLink>
-        </li>
-        <li className={s.navbar__menuItem}>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
-                : s.navbar__menuItemLink
-            }
-            to="/exchanges"
-          >
-            <AiFillAccountBook className={s.navbar__menuLinkIcon} size={20} />
-            <span>Exchanges</span>
-          </NavLink>
-        </li>
-        <li className={s.navbar__menuItem}>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
-                : s.navbar__menuItemLink
-            }
-            to="/news"
-          >
-            <AiOutlineBulb className={s.navbar__menuLinkIcon} size={20} />
-            <span>News</span>
-          </NavLink>
-        </li>
-      </ul>
+      <Navigation />
     </div>
   );
 };
