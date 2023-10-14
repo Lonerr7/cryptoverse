@@ -8,7 +8,7 @@ import {
   AiOutlineBulb,
 } from 'react-icons/ai';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
     <div className={s.navbar}>
       <div className={s.navbar__logoContainer}>

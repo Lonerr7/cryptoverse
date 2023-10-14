@@ -20,3 +20,12 @@
   grid-area: main;
   background-color: $bgSecondary;
 }
+
+@media (max-width: 793px) {
+  .App {
+    grid-template-areas:
+      'navbar navbar'
+      'main main'
+      'footer footer';
+  }
+}

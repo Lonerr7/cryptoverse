@@ -33,12 +33,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
   }
 
   &__subtitle {
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-right: 10px;
   }
 
   &__showMore {

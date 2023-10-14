@@ -27,9 +27,6 @@ const LineChart: React.FC<Props> = ({
     coinTimeStamp.push(new Date(el.timestamp).toLocaleDateString());
   });
 
-  console.log(coinPrice);
-  console.log(coinTimeStamp);
-
   const data = {
     labels: coinTimeStamp,
     datasets: [

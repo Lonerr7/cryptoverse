@@ -2,15 +2,10 @@
 
 .navbar {
   height: 100%;
-  // width: 307px;
-  // position: fixed;
-  // left: 0;
-  // top: 0;
   padding-top: 15px;
 
   &__logoContainer {
-    margin-left: 15px;
-    margin-bottom: 50px;
+    margin: 0 15px 50px 15px;
   }
 
   &__logoLink {
@@ -61,5 +56,11 @@
 
   &__menuLinkIcon {
     margin-right: 10px;
+  }
+}
+
+@media (max-width: 793px) {
+  .navbar {
+    width: 100%;
   }
 }
