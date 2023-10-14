@@ -12,6 +12,10 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className={s.navbar}>
       <div className={s.navbar__logoContainer}>
@@ -22,7 +26,7 @@ const Navbar: React.FC = () => {
         <Burger isMenuOpen={isMenuOpen} openCloseMenu={openCloseMenu} />
       </div>
 
-      <Navigation />
+      <Navigation isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
     </div>
   );
 };

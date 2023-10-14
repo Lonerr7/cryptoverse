@@ -7,9 +7,18 @@ import {
   AiOutlineLineChart,
 } from 'react-icons/ai';
 
-const Navigation: React.FC = () => {
+interface Props {
+  isMenuOpen: boolean;
+  closeMenu: () => void;
+}
+
+const Navigation: React.FC<Props> = ({ isMenuOpen, closeMenu }) => {
   return (
-    <ul className={s.navbar__menu}>
+    <ul
+      className={
+        isMenuOpen ? `${s.navbar__menu}` : `${s.navbar__menu} ${s.closed}`
+      }
+    >
       <li className={s.navbar__menuItem}>
         <NavLink
           className={({ isActive }) =>
@@ -18,6 +27,7 @@ const Navigation: React.FC = () => {
               : s.navbar__menuItemLink
           }
           to="/"
+          onClick={closeMenu}
         >
           <AiOutlineHome className={s.navbar__menuLinkIcon} size={20} />
           <span>Home</span>
@@ -31,6 +41,7 @@ const Navigation: React.FC = () => {
               : s.navbar__menuItemLink
           }
           to="/cryptocurrencies"
+          onClick={closeMenu}
         >
           <AiOutlineLineChart className={s.navbar__menuLinkIcon} size={20} />
           <span>Cryptocurrencies</span>
@@ -44,6 +55,7 @@ const Navigation: React.FC = () => {
               : s.navbar__menuItemLink
           }
           to="/exchanges"
+          onClick={closeMenu}
         >
           <AiFillAccountBook className={s.navbar__menuLinkIcon} size={20} />
           <span>Exchanges</span>
@@ -57,6 +69,7 @@ const Navigation: React.FC = () => {
               : s.navbar__menuItemLink
           }
           to="/news"
+          onClick={closeMenu}
         >
           <AiOutlineBulb className={s.navbar__menuLinkIcon} size={20} />
           <span>News</span>

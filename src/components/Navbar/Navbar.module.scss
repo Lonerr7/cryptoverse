@@ -62,5 +62,34 @@
 @media (max-width: 793px) {
   .navbar {
     width: 100%;
+    height: 84px;
+
+    &__menu {
+      background-color: $dark-blue;
+      padding: 80px 20px 60px 10px;
+      position: fixed;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      height: 100vh;
+      top: 0;
+      right: -13px;
+      width: 250px;
+      transform: translateX(0);
+      transition: all 0.3s ease-in-out;
+      z-index: 500;
+    }
+
+    &__menuItem {
+      margin-bottom: 15px;
+    }
+
+    &__menuItemLink {
+      padding: 12px 0 12px 10px;
+    }
   }
+}
+
+.closed {
+  transform: translateX(1000%);
 }
