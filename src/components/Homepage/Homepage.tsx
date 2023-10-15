@@ -21,11 +21,11 @@ const Homepage: React.FC = () => {
 
   return (
     <div className={s.homepage}>
-      <h1 className={s.homepage__title}>Global Crypto Stats</h1>
       {isFetching ? (
         <Preloader />
       ) : (
         <>
+          <h1 className={s.homepage__title}>Global Crypto Stats</h1>
           {stats ? <CryptoStats stats={stats} /> : null}
 
           <div

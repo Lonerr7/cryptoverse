@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import s from './Footer.module.scss';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className={s.footer}>
       <h5 className={s.footer__title}>Cryptoverse</h5>

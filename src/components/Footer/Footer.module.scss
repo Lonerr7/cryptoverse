@@ -5,7 +5,7 @@
   background-color: $dark-blue;
   color: $light-white;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px;
   font-size: 18px;
 
   &__title {
@@ -26,5 +26,11 @@
 
   &__link {
     color: $light-blue;
+  }
+}
+
+@media (max-width: 351px) {
+  .footer {
+    font-size: 16px;
   }
 }

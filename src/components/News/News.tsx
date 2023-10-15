@@ -55,6 +55,7 @@ const News: React.FC<Props> = ({
           onChange={onSelectChange}
           defaultInputValue={'Cryptocurrency'}
           classNamePrefix="news-select"
+          placeholder="Select news title..."
         />
       ) : null}
       <div className={s.news__inner}>

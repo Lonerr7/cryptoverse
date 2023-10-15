@@ -24,9 +24,14 @@
   }
 }
 
+@media (max-width: 881px) {
+  .news__select {
+    width: 100% !important;
+  }
+}
+
 @media (max-width: 850px) {
   .news__inner {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
