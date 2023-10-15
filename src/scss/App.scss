@@ -12,7 +12,6 @@
 
 .navbar {
   grid-area: navbar;
-  position: relative;
   background-color: $dark-blue;
 }
 
@@ -27,5 +26,16 @@
       'navbar navbar'
       'main main'
       'footer footer';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 84px auto 96px;
+  }
+
+  .navbar {
+    position: fixed;
+    height: 84px;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
   }
 }

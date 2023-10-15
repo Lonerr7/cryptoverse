@@ -7,7 +7,7 @@ import CryptoDetailsContainer from '../Cryptocurrencies/CryptoDetails/CryptoDeta
 
 const AppRouter = () => {
   return (
-    <div className="routes">
+    <div>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/exchanges" element={<Exchanges />} />
