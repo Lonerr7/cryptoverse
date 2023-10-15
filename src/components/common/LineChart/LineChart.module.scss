@@ -14,7 +14,7 @@
     font-size: 22px;
     font-weight: 500;
     line-height: 27px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 
     &:last-child {
       margin-bottom: 15px;
@@ -23,5 +23,16 @@
 
   &__chart {
     width: 100%;
+  }
+}
+
+@media (max-width: 751px) {
+  .chart__title {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .chart__priceTitle {
+    font-size: 21px;
   }
 }
