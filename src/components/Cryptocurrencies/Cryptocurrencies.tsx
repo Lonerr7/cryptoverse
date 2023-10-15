@@ -9,6 +9,7 @@ import {
 } from '../../redux/selectors/selectCryprosBySearch';
 import Search from '../common/Search/Search';
 import Preloader from '../common/Preloader/Preloader';
+import TextError from '../common/TextError/TextError';
 
 interface Props {
   simplified?: boolean;
@@ -18,6 +19,9 @@ const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
   const coins = useAppSelector(selectCryptosBySearch);
   const isCoinsFetching = useAppSelector((state) => state.coins.isFetching);
   const searchText = useAppSelector(selectCryptoSearchText);
+  const getCryptosErrMsg = useAppSelector(
+    (state) => state.coins.getCryptosErrMsg
+  );
   const dispatch = useAppDispatch();
   const cardsCount = simplified ? 10 : 100;
 
@@ -60,15 +64,21 @@ const Cryptocurrencies: React.FC<Props> = ({ simplified }) => {
         <Preloader />
       ) : (
         <>
-          {!simplified ? (
-            <Search
-              customInputClassName={s.cryptocurrencies__searchInput}
-              searchText={searchText}
-              actionCreator={changeSearchText}
-              placeholder="Search a specific coin..."
-            />
-          ) : null}
-          <div className={s.cryptocurrencies__list}>{coinElements}</div>
+          {getCryptosErrMsg ? (
+            <TextError errorMessage={getCryptosErrMsg} />
+          ) : (
+            <>
+              {!simplified ? (
+                <Search
+                  customInputClassName={s.cryptocurrencies__searchInput}
+                  searchText={searchText}
+                  actionCreator={changeSearchText}
+                  placeholder="Search a specific coin..."
+                />
+              ) : null}
+              <div className={s.cryptocurrencies__list}>{coinElements}</div>
+            </>
+          )}
         </>
       )}
     </div>

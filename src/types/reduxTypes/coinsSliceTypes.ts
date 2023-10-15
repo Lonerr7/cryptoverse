@@ -6,6 +6,9 @@ export interface CoinsState {
   isFetching: boolean;
   isCoinDetailsFetching: boolean;
   coinsSearchText: string;
+  getCryptosErrMsg: string;
+  fetchCoinDetailsErrMsg: string;
+  fetchCoinHistoryErrMsg: string;
 }
 
 export interface Stats {

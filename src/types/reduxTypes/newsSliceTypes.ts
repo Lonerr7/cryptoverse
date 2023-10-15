@@ -6,6 +6,7 @@ export interface FetchNewsThunk {
 export interface NewsSliceState {
   news: NewsItem[];
   isFetching: boolean;
+  fetchCryptoNewsErrMsg: string;
 }
 
 export interface NewsItem {

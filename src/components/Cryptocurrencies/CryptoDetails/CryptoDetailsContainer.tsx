@@ -37,6 +37,9 @@ const CryptoDetailsContainer: React.FC = () => {
   const isFetching = useAppSelector(
     (state) => state.coins.isCoinDetailsFetching
   );
+  const fetchCoinHistoryErrMsg = useAppSelector(
+    (state) => state.coins.fetchCoinHistoryErrMsg
+  );
   const [selectedTimestamp, setSelectedTimestamp] =
     useState<CoinChartTimePeriod>('24h');
   const dispatch = useAppDispatch();
@@ -145,6 +148,7 @@ const CryptoDetailsContainer: React.FC = () => {
       genericStats={genericStats}
       selectDefaultValue={selectedTimestamp}
       onSelectChange={onSelectChange}
+      fetchCoinHistoryErrMsg={fetchCoinHistoryErrMsg}
     />
   );
 };

@@ -12,7 +12,7 @@ export const fetchCryptoNews = createAsyncThunk(
     try {
       const response = await newsApi.getCryptoNews(newsCategory, count);
 
-      return response.data.value
+      return response.data.value;
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -22,6 +22,7 @@ export const fetchCryptoNews = createAsyncThunk(
 const initialState: NewsSliceState = {
   news: [],
   isFetching: false,
+  fetchCryptoNewsErrMsg: '',
 };
 
 const newsSlice = createSlice({
@@ -37,7 +38,12 @@ const newsSlice = createSlice({
       action: PayloadAction<NewsItem[]>
     ) => {
       state.isFetching = false;
+      state.fetchCryptoNewsErrMsg = '';
       state.news = action.payload;
+    },
+    [fetchCryptoNews.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isFetching = false;
+      state.fetchCryptoNewsErrMsg = action.payload;
     },
   },
 });

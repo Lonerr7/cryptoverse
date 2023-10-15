@@ -12,6 +12,9 @@ const NewsContainer: React.FC<Props> = ({ simplified }) => {
   const news = useAppSelector((state) => state.news.news);
   const cryptos = useAppSelector((state) => state.coins.coins);
   const isNewsFetching = useAppSelector((state) => state.news.isFetching);
+  const fetchCryptoNewsErrMsg = useAppSelector(
+    (state) => state.news.fetchCryptoNewsErrMsg
+  );
   const dispatch = useAppDispatch();
 
   const [selectOption, setSelectOption] = useState('Cryptocurrency');
@@ -63,6 +66,7 @@ const NewsContainer: React.FC<Props> = ({ simplified }) => {
       news={news}
       onSelectChange={onSelectChange}
       selectOptions={selectOptions}
+      fetchCryptoNewsErrMsg={fetchCryptoNewsErrMsg}
     />
   );
 };

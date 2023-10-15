@@ -3,6 +3,7 @@ import Preloader from '../common/Preloader/Preloader';
 import NewsCard from './NewsCard/NewsCard';
 import Select from 'react-select';
 import { NewsItem } from '../../types/reduxTypes/newsSliceTypes';
+import TextError from '../common/TextError/TextError';
 
 interface Props {
   simplified?: boolean;
@@ -15,6 +16,7 @@ interface Props {
     | undefined;
   onSelectChange: (newValue: any) => void;
   isNewsFetching: boolean;
+  fetchCryptoNewsErrMsg: string;
 }
 
 const News: React.FC<Props> = ({
@@ -22,6 +24,7 @@ const News: React.FC<Props> = ({
   news,
   isNewsFetching,
   selectOptions,
+  fetchCryptoNewsErrMsg,
   onSelectChange,
 }) => {
   const newsCards = news?.map((newsItem, i) => (
@@ -62,7 +65,13 @@ const News: React.FC<Props> = ({
         {isNewsFetching ? (
           <Preloader customPreloaderClassName={s.news__preloader} />
         ) : (
-          newsCards
+          <>
+            {fetchCryptoNewsErrMsg ? (
+              <TextError errorMessage={fetchCryptoNewsErrMsg} />
+            ) : (
+              newsCards
+            )}
+          </>
         )}
       </div>
     </div>

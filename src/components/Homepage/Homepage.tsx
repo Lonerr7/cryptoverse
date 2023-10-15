@@ -7,9 +7,10 @@ import Preloader from '../common/Preloader/Preloader';
 import CryptoStats from './CryptoStats/CryptoStats';
 import Cryptocurrencies from '../Cryptocurrencies/Cryptocurrencies';
 import NewsContainer from '../News/NewsContainer';
+import TextError from '../common/TextError/TextError';
 
 const Homepage: React.FC = () => {
-  const stats = useAppSelector((state) => state.coins.stats);
+  const { stats, getCryptosErrMsg } = useAppSelector((state) => state.coins);
   const isFetching = useAppSelector((state) => state.coins.isFetching);
   const dispatch = useAppDispatch();
 
@@ -26,7 +27,11 @@ const Homepage: React.FC = () => {
       ) : (
         <>
           <h1 className={s.homepage__title}>Global Crypto Stats</h1>
-          {stats ? <CryptoStats stats={stats} /> : null}
+          {stats ? (
+            <CryptoStats stats={stats} />
+          ) : (
+            <TextError errorMessage={getCryptosErrMsg} />
+          )}
 
           <div
             className={`${s.homepage__subtitleBox} ${s.homepage__top10SubtitleBox}`}

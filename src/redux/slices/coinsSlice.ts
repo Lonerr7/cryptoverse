@@ -16,7 +16,7 @@ export const getCryptos = createAsyncThunk(
 
       return response.data.data;
     } catch (error: any) {
-      return rejectWithValue(error?.message); //!
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -29,19 +29,24 @@ export const fetchCoinDetails = createAsyncThunk(
 
       return response.data.data.coin;
     } catch (error: any) {
-      return rejectWithValue(error?.message); //!
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const fetchCoinHistory = createAsyncThunk(
   'coins/fetchCoinHistory',
-  async ({ coinId, timePeriod = '24h' }: FetchCoinHistoryParams) => {
+  async (
+    { coinId, timePeriod = '24h' }: FetchCoinHistoryParams,
+    { rejectWithValue }
+  ) => {
     try {
       const response = await cryptoApi.getCoinHistory({ coinId, timePeriod });
 
       return response.data.data;
-    } catch (error: any) {}
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
@@ -56,6 +61,9 @@ const initialState: CoinsState = {
   isFetching: false,
   isCoinDetailsFetching: false,
   coinsSearchText: '',
+  getCryptosErrMsg: '',
+  fetchCoinDetailsErrMsg: '',
+  fetchCoinHistoryErrMsg: '',
 };
 
 const coinsSlice = createSlice({
@@ -75,11 +83,13 @@ const coinsSlice = createSlice({
       action: PayloadAction<CoinsResponse>
     ) => {
       state.isFetching = false;
+      state.getCryptosErrMsg = '';
       state.coins = action.payload.coins;
       state.stats = action.payload.stats;
     },
-    [getCryptos.rejected.type]: (state) => {
-      state.isFetching = false; //!
+    [getCryptos.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isFetching = false;
+      state.getCryptosErrMsg = action.payload;
     },
     [fetchCoinDetails.pending.type]: (state) => {
       state.isCoinDetailsFetching = true;
@@ -89,19 +99,28 @@ const coinsSlice = createSlice({
       action: PayloadAction<CoinDetails>
     ) => {
       state.isCoinDetailsFetching = false;
+      state.fetchCoinDetailsErrMsg = '';
       state.currentCoinDetails = action.payload;
     },
     [fetchCoinDetails.rejected.type]: (
       state,
       action: PayloadAction<string>
     ) => {
-      state.isCoinDetailsFetching = false; //!
+      state.isCoinDetailsFetching = false;
+      state.fetchCoinDetailsErrMsg = action.payload;
     },
     [fetchCoinHistory.fulfilled.type]: (
       state,
       action: PayloadAction<CoinHistoryData>
     ) => {
+      state.fetchCoinHistoryErrMsg = '';
       state.currentCoinHistory = action.payload;
+    },
+    [fetchCoinHistory.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.fetchCoinHistoryErrMsg = action.payload;
     },
   },
 });

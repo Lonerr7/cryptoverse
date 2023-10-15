@@ -12,8 +12,7 @@ import CryptoStats from './CryptoStats/CryptoStats';
 import CoinLink from './CoinLink/CoinLink';
 import LineChart from '../../common/LineChart/LineChart';
 import millify from 'millify';
-
-// Закончил на 1:50:16
+import TextError from '../../common/TextError/TextError';
 
 interface Props {
   coinDetails: CoinDetails | null;
@@ -27,6 +26,7 @@ interface Props {
   coinHistory: CoinHistoryData;
   selectDefaultValue: CoinChartTimePeriod;
   onSelectChange: (newValue: any) => void;
+  fetchCoinHistoryErrMsg: string;
 }
 
 const CryptoDetails: React.FC<Props> = ({
@@ -37,6 +37,7 @@ const CryptoDetails: React.FC<Props> = ({
   genericStats,
   coinHistory,
   selectDefaultValue,
+  fetchCoinHistoryErrMsg,
   onSelectChange,
 }) => {
   const coinStatsElements = stats.map((stat, i) => (
@@ -121,7 +122,9 @@ const CryptoDetails: React.FC<Props> = ({
                 {coinLinksElements}
               </div>
             </>
-          ) : null}
+          ) : (
+            <TextError errorMessage={fetchCoinHistoryErrMsg} />
+          )}
         </>
       )}
     </div>
