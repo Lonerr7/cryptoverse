@@ -14,11 +14,6 @@ const Footer: React.FC = () => {
           </Link>
         </li>
         <li className={s.footer__listItem}>
-          <Link className={s.footer__link} to="/exchanges">
-            Exchanges
-          </Link>
-        </li>
-        <li className={s.footer__listItem}>
           <Link className={s.footer__link} to="/news">
             News
           </Link>

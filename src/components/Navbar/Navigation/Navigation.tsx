@@ -54,20 +54,6 @@ const Navigation: React.FC<Props> = ({ isMenuOpen, closeMenu }) => {
               ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
               : s.navbar__menuItemLink
           }
-          to="/exchanges"
-          onClick={closeMenu}
-        >
-          <AiFillAccountBook className={s.navbar__menuLinkIcon} size={20} />
-          <span>Exchanges</span>
-        </NavLink>
-      </li>
-      <li className={s.navbar__menuItem}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? `${s.navbar__menuItemLink} ${s.navbar__menuItemLink_active}`
-              : s.navbar__menuItemLink
-          }
           to="/news"
           onClick={closeMenu}
         >
