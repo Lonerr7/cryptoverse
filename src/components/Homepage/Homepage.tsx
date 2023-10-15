@@ -28,8 +28,12 @@ const Homepage: React.FC = () => {
         <>
           {stats ? <CryptoStats stats={stats} /> : null}
 
-          <div className={s.homepage__subtitleBox}>
-            <h2 className={s.homepage__subtitle}>
+          <div
+            className={`${s.homepage__subtitleBox} ${s.homepage__top10SubtitleBox}`}
+          >
+            <h2
+              className={`${s.homepage__subtitle} ${s.homepage__top10Subtitle}`}
+            >
               Top 10 Cryptocurrencies in the world
             </h2>
             <Link to="/cryptocurrencies" className={s.homepage__showMore}>
@@ -38,8 +42,12 @@ const Homepage: React.FC = () => {
           </div>
           <Cryptocurrencies simplified />
 
-          <div className={s.homepage__subtitleBox}>
-            <h2 className={s.homepage__subtitle}>Latest Crypto News</h2>
+          <div className={`${s.homepage__subtitleBox} ${s.homepage__newsBox}`}>
+            <h2
+              className={`${s.homepage__subtitle} ${s.homepage__newsSbutitle}`}
+            >
+              Latest Crypto News
+            </h2>
             <Link to="/news" className={s.homepage__showMore}>
               Show More
             </Link>

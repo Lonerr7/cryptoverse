@@ -48,3 +48,46 @@
     color: $light-blue;
   }
 }
+
+@media (max-width: 555px) {
+  .homepage__title {
+    font-size: 26px;
+  }
+
+  .homepage__subtitle {
+    font-size: 22px;
+  }
+
+  .homepage__showMore {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 511px) {
+  .homepage__top10SubtitleBox {
+    flex-direction: column;
+  }
+
+  .homepage__top10Subtitle {
+    margin-bottom: 5px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 431px) {
+  .homepage__title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 351px) {
+  .homepage__newsBox {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .homepage__newsSbutitle {
+    margin-bottom: 5px;
+  }
+}
